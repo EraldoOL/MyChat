@@ -1,8 +1,5 @@
-// public/app.js
+// Criação da conexão com o servidor Socket.IO
 const socket = io();
-const chatInput = document.getElementById('chat-input');
-const sendButton = document.getElementById('send-btn');
-const messages = document.getElementById('messages');
 
 // Função para exibir mensagens no chat
 function addMessage(message) {
