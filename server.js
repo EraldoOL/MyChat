@@ -9,21 +9,24 @@ const io = socketIo(server); // Definindo a variável io
 app.use(express.static('public')); // Servindo os arquivos estáticos
 
 // Configuração do socket.io
+// No lado do servidor
 io.on('connection', (socket) => {
-    console.log('Novo usuário conectado');
+  console.log('Usuário conectado: ' + socket.id);
 
-    // Envia uma mensagem de boas-vindas quando um novo usuário conecta
-    socket.emit('message', 'Bem-vindo ao chat!');
-
-    // Lida com mensagens enviadas pelos usuários
+  socket.on('audio-stream', (stream) => {
+    // Enviar o áudio para todos os outros clientes conectados
+    socket.broadcast.emit('audio-stream', stream);
+  });
+  
+      // Lida com mensagens enviadas pelos usuários
     socket.on('chatMessage', (msg) => {
         // Emite a mensagem para todos os clientes conectados
         io.emit('message', msg);
     });
 
-    socket.on('disconnect', () => {
-        console.log('Usuário desconectado');
-    });
+  socket.on('disconnect', () => {
+    console.log('Usuário desconectado: ' + socket.id);
+  });
 });
 
 server.listen(3000, () => {

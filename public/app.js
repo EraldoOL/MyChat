@@ -12,6 +12,12 @@ function addMessage(message) {
 socket.on('message', (msg) => {
     addMessage(msg);
 });
+// No lado do cliente para receber o stream de áudio
+socket.on('audio-stream', (stream) => {
+  const audio = new Audio();
+  audio.srcObject = stream;
+  audio.play();
+});
 
 // Enviar mensagem quando o botão for clicado
 document.getElementById('send-btn').addEventListener('click', () => {
@@ -58,3 +64,20 @@ if ('webkitSpeechRecognition' in window) {
         console.error('Erro no reconhecimento de voz:', event.error);
     };
 }
+
+navigator.mediaDevices.getUserMedia({ audio: true })
+  .then(stream => {
+    const audioTracks = stream.getAudioTracks();
+    console.log('Microfone ativado:', audioTracks[0].label);
+
+    // Criar um objeto de conexão de áudio e enviar para o servidor (via socket.io)
+    const audio = new Audio();
+    audio.srcObject = stream;
+    audio.play();
+
+    // Enviar o stream de áudio via socket para o servidor
+    socket.emit('audio-stream', stream);
+  })
+  .catch(err => {
+    console.error('Erro ao acessar o microfone:', err);
+  });
