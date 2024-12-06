@@ -49,6 +49,9 @@ if ('webkitSpeechRecognition' in window) {
             transcript += event.results[i][0].transcript;
         }
         document.getElementById('chat-input').value = transcript;
+
+        // Enviar o texto transcrito como uma mensagem
+        socket.emit('chatMessage', transcript);
     };
 
     recognition.onerror = (event) => {
