@@ -13,9 +13,9 @@ socket.on('message', (msg) => {
     addMessage(msg);
 });
 // No lado do cliente para receber o stream de áudio
-socket.on('audio-stream', (stream) => {
-  const audio = new Audio();
-  audio.srcObject = stream;
+socket.on('audio-stream', (audioBlob) => {
+  const audioUrl = URL.createObjectURL(audioBlob);
+  const audio = new Audio(audioUrl);
   audio.play();
 });
 
