@@ -1,9 +1,9 @@
 const express = require('express');
-const http = require('http');
 const socketIo = require('socket.io');
+const { Server } = require('http');
 
 const app = express();
-const server = http.createServer(app);
+const server = new Server(app);
 const io = socketIo(server); // Inicializando o Socket.IO
 
 app.use(express.static('public')); // Servindo os arquivos estáticos
@@ -17,10 +17,8 @@ io.on('connection', (socket) => {
     socket.broadcast.emit('audio-stream', audioBlob);
   });
 
-  // Lida com mensagens enviadas pelos usuários
   socket.on('chatMessage', (msg) => {
-    // Emite a mensagem para todos os clientes conectados
-    io.emit('message', msg);
+    io.emit('message', msg); // Emite a mensagem para todos os clientes conectados
   });
 
   socket.on('disconnect', () => {
@@ -28,6 +26,7 @@ io.on('connection', (socket) => {
   });
 });
 
-server.listen(3000, () => {
-  console.log('Servidor rodando na porta 3000');
-});
+// Exporta o servidor para que a Vercel possa usá-lo
+module.exports = (req, res) => {
+  server.emit('request', req, res);
+};
