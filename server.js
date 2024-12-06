@@ -4,15 +4,20 @@ const socketIo = require('socket.io');
 
 const app = express();
 const server = http.createServer(app);
-const io = socketIo(server);
+const io = socketIo(server); // Definindo a variável io
 
-app.use(express.static('public'));
+app.use(express.static('public')); // Servindo os arquivos estáticos
 
+// Configuração do socket.io
 io.on('connection', (socket) => {
     console.log('Novo usuário conectado');
+
+    // Envia uma mensagem de boas-vindas quando um novo usuário conecta
     socket.emit('message', 'Bem-vindo ao chat!');
 
+    // Lida com mensagens enviadas pelos usuários
     socket.on('chatMessage', (msg) => {
+        // Emite a mensagem para todos os clientes conectados
         io.emit('message', msg);
     });
 

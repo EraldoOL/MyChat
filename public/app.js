@@ -1,11 +1,11 @@
 // Criação da conexão com o servidor Socket.IO
-const socket = io();
+const socket = io(); // Inicializa a conexão
 
 // Função para exibir mensagens no chat
 function addMessage(message) {
     const li = document.createElement('li');
     li.textContent = message;
-    messages.appendChild(li);
+    document.getElementById('messages').appendChild(li);
 }
 
 // Recebe mensagem do servidor e exibe
@@ -14,19 +14,19 @@ socket.on('message', (msg) => {
 });
 
 // Enviar mensagem quando o botão for clicado
-sendButton.addEventListener('click', () => {
-    const message = chatInput.value;
+document.getElementById('send-btn').addEventListener('click', () => {
+    const message = document.getElementById('chat-input').value;
     if (message.trim()) {
-        socket.emit('chatMessage', message);
-        chatInput.value = '';
+        socket.emit('chatMessage', message);  // Envia a mensagem para o servidor
+        document.getElementById('chat-input').value = '';  // Limpa o campo de input
     }
 });
 
 // Enviar mensagem quando pressionar Enter
-chatInput.addEventListener('keypress', (event) => {
-    if (event.key === 'Enter' && chatInput.value.trim()) {
-        socket.emit('chatMessage', chatInput.value);
-        chatInput.value = '';
+document.getElementById('chat-input').addEventListener('keypress', (event) => {
+    if (event.key === 'Enter' && document.getElementById('chat-input').value.trim()) {
+        socket.emit('chatMessage', document.getElementById('chat-input').value);  // Envia a mensagem para o servidor
+        document.getElementById('chat-input').value = '';  // Limpa o campo de input
     }
 });
 
@@ -48,7 +48,7 @@ if ('webkitSpeechRecognition' in window) {
         for (let i = event.resultIndex; i < event.results.length; i++) {
             transcript += event.results[i][0].transcript;
         }
-        chatInput.value = transcript;
+        document.getElementById('chat-input').value = transcript;
     };
 
     recognition.onerror = (event) => {
