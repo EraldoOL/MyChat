@@ -1,21 +1,37 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat em Tempo Real</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat em Tempo Real</title>
+  <script src="/socket.io/socket.io.js"></script>
 </head>
 <body>
-    <div id="chat-container">
-        <ul id="messages"></ul>
-        <input type="text" id="chat-input" placeholder="Digite sua mensagem..." autocomplete="off">
-        <button id="send-btn">Enviar</button>
-        <button id="microphone-btn">🎤</button>
-    </div>
+  <ul id="messages"></ul>
+  <input id="chat-input" autocomplete="off" />
+  <button id="send-btn">Enviar</button>
 
-    <!-- Certifique-se de que este script esteja presente -->
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="app.js"></script>
+  <script>
+    const socket = io();
+
+    // Exibe mensagens no chat
+    function addMessage(message) {
+      const li = document.createElement('li');
+      li.textContent = message;
+      document.getElementById('messages').appendChild(li);
+    }
+
+    // Recebe mensagens do servidor
+    socket.on('message', (msg) => {
+      addMessage(msg);
+    });
+
+    // Envia mensagem ao servidor
+    document.getElementById('send-btn').addEventListener('click', () => {
+      const input = document.getElementById('chat-input');
+      socket.emit('chatMessage', input.value);
+      input.value = ''; // Limpa o campo
+    });
+  </script>
 </body>
 </html>

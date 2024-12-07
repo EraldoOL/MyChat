@@ -1,32 +1,26 @@
-const express = require('express');
-const socketIo = require('socket.io');
-const { Server } = require('http');
+const { Server } = require('socket.io');
 
-const app = express();
-const server = new Server(app);
-const io = socketIo(server); // Inicializando o Socket.IO
+let io;
 
-app.use(express.static('public')); // Servindo os arquivos estáticos
-
-// Configuração do socket.io
-io.on('connection', (socket) => {
-  console.log('Usuário conectado: ' + socket.id);
-
-  socket.on('audio-stream', (audioBlob) => {
-    // Enviar o áudio para todos os outros clientes conectados
-    socket.broadcast.emit('audio-stream', audioBlob);
-  });
-
-  socket.on('chatMessage', (msg) => {
-    io.emit('message', msg); // Emite a mensagem para todos os clientes conectados
-  });
-
-  socket.on('disconnect', () => {
-    console.log('Usuário desconectado: ' + socket.id);
-  });
-});
-
-// Exporta o servidor para que a Vercel possa usá-lo
 module.exports = (req, res) => {
-  server.emit('request', req, res);
+  if (!res.socket.server.io) {
+    console.log('Iniciando Socket.IO...');
+    io = new Server(res.socket.server);
+
+    io.on('connection', (socket) => {
+      console.log('Usuário conectado: ' + socket.id);
+
+      // Lida com mensagens enviadas pelos usuários
+      socket.on('chatMessage', (msg) => {
+        io.emit('message', msg); // Emite a mensagem para todos os clientes conectados
+      });
+
+      socket.on('disconnect', () => {
+        console.log('Usuário desconectado: ' + socket.id);
+      });
+    });
+
+    res.socket.server.io = io; // Associar o servidor ao objeto `res`
+  }
+  res.end(); // Finaliza a resposta
 };
