@@ -4,7 +4,7 @@ const { Server } = require('http');
 const mongoose = require('mongoose');
 
 // Substitua pela string de conexão com sua senha
-const connectionString = 'mongodb+srv://Pionne:pionne@cluster0.rw9vw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+const connectionString = 'mongodb+srv://Pionne:pionne@cluster0.mongodb.net/Messenger?retryWrites=true&w=majority';
 
 mongoose.connect(connectionString, {
   useNewUrlParser: true,
