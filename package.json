@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "api/socket.js",
   "scripts": {
-    "start": "node api/socket.js"
+    "start": "vercel dev"
   },
   "dependencies": {
     "express": "^4.21.2",
