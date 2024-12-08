@@ -4,7 +4,7 @@ const socketIo = require('socket.io');
 const mongoose = require('mongoose');
 
 // Conectando ao MongoDB
-const connectionString = 'mongodb+srv://Pionne:pionne@cluster0.mongodb.net/Messenger?retryWrites=true&w=majority';
+const connectionString = 'mongodb+srv://Pionne:eraldo@cluster0.rw9vw.mongodb.net/Messenger?retryWrites=true&w=majority&appName=Cluster0';
 
 mongoose.connect(connectionString, {
   useNewUrlParser: true,
