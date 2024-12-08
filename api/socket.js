@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const { Server } = require('http');
 
 // Conexão com o MongoDB
-const connectionString = 'mongodb+srv://Pionne:eraldo@cluster0.mongodb.net/Messenger?retryWrites=true&w=majority';
+const connectionString = 'mongodb+srv://Pionne:eraldo@cluster0.rw9vw.mongodb.net/Messenger?retryWrites=true&w=majority&appName=Cluster0';
 mongoose.connect(connectionString, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
