@@ -36,6 +36,9 @@ io.on('connection', (socket) => {
 
   // Evento de receber mensagem do cliente
   socket.on('chatMessage', (msg) => {
+    // Verifique os dados recebidos
+    console.log('Mensagem recebida:', msg);
+
     // Criando uma nova mensagem e salvando no banco
     const newMessage = new Message({
       username: msg.username,
@@ -45,16 +48,17 @@ io.on('connection', (socket) => {
     newMessage.save()
       .then(() => {
         console.log('Mensagem salva com sucesso!');
+        // Enviar a mensagem de volta para todos os clientes conectados
+        io.emit('message', msg);
       })
       .catch((err) => {
         console.log('Erro ao salvar mensagem:', err);
       });
-
-    // Emitir a mensagem para todos os clientes conectados
-    io.emit('message', msg);
   });
 
+  // Evento de áudio
   socket.on('audio-stream', (audioBlob) => {
+    console.log('Recebendo áudio...');
     socket.broadcast.emit('audio-stream', audioBlob);
   });
 
@@ -63,9 +67,8 @@ io.on('connection', (socket) => {
   });
 });
 
-
 // Iniciando o servidor
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
-});
+});;
