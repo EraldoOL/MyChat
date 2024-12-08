@@ -59,6 +59,10 @@ io.on('connection', (socket) => {
   });
 });
 
+  socket.on('audio-stream', (audioBlob) => {
+    socket.broadcast.emit('audio-stream', audioBlob);
+  });
+
 // Iniciando o servidor
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
