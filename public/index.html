@@ -17,5 +17,34 @@
     <!-- Certifique-se de que este script esteja presente -->
     <script src="/socket.io/socket.io.js"></script>
     <script src="app.js"></script>
+    
+   <script>
+    const socket = io();
+
+    // Função para enviar mensagem
+    function sendMessage() {
+      const message = document.getElementById('messageInput').value;
+      const username = 'Usuário';  // Ou qualquer valor que você queira usar como nome de usuário
+
+      // Envia a mensagem para o servidor
+      socket.emit('chatMessage', { username: username, message: message });
+
+      // Limpa o campo de input
+      document.getElementById('messageInput').value = '';
+    }
+
+    // Recebe a mensagem do servidor e exibe na tela
+    socket.on('message', (msg) => {
+      const chatContainer = document.getElementById('chatContainer');
+      const messageDiv = document.createElement('div');
+      messageDiv.classList.add('message');
+      messageDiv.textContent = `${msg.username}: ${msg.message}`;
+      chatContainer.appendChild(messageDiv);
+
+      // Rola para o final da tela
+      chatContainer.scrollTop = chatContainer.scrollHeight;
+    });
+  </script>
+    
 </body>
 </html>
