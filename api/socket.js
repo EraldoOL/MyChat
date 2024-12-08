@@ -54,14 +54,15 @@ io.on('connection', (socket) => {
     io.emit('message', msg);
   });
 
+  socket.on('audio-stream', (audioBlob) => {
+    socket.broadcast.emit('audio-stream', audioBlob);
+  });
+
   socket.on('disconnect', () => {
     console.log('Usuário desconectado: ' + socket.id);
   });
 });
 
-  socket.on('audio-stream', (audioBlob) => {
-    socket.broadcast.emit('audio-stream', audioBlob);
-  });
 
 // Iniciando o servidor
 const PORT = process.env.PORT || 3000;
