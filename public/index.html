@@ -59,8 +59,38 @@
         });
 
         // Função de interação com o botão de microfone
+        let mediaRecorder;
+        let audioChunks = [];
+        
         document.getElementById('microphone-btn').addEventListener('click', () => {
-            alert('Funcionalidade de microfone ainda não implementada.');
+            // Tenta acessar o microfone do usuário
+            navigator.mediaDevices.getUserMedia({ audio: true })
+                .then(stream => {
+                    // Inicia a gravação do áudio
+                    mediaRecorder = new MediaRecorder(stream);
+                    mediaRecorder.start();
+
+                    // Captura os dados de áudio à medida que são gravados
+                    mediaRecorder.ondataavailable = event => {
+                        audioChunks.push(event.data);
+                    };
+
+                    // Quando a gravação terminar, envia o áudio para o servidor
+                    mediaRecorder.onstop = () => {
+                        const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+                        socket.emit('audio-stream', audioBlob);
+                        audioChunks = [];  // Limpa os dados de áudio
+                    };
+
+                    // Para a gravação após 5 segundos (por exemplo)
+                    setTimeout(() => {
+                        mediaRecorder.stop();
+                    }, 5000); // Ajuste o tempo conforme necessário
+                })
+                .catch(error => {
+                    console.error("Erro ao acessar o microfone:", error);
+                    alert("Erro ao acessar o microfone!");
+                });
         });
     </script>
 </body>

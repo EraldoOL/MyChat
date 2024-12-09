@@ -64,6 +64,8 @@ io.on('connection', (socket) => {
   // Evento de áudio
   socket.on('audio-stream', (audioBlob) => {
     console.log('Recebendo áudio...');
+
+    // Transmitir o áudio para todos os outros clientes conectados
     socket.broadcast.emit('audio-stream', audioBlob);
   });
 
