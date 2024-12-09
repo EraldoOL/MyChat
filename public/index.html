@@ -16,35 +16,52 @@
 
     <!-- Certifique-se de que este script esteja presente -->
     <script src="/socket.io/socket.io.js"></script>
-    <script src="app.js"></script>
-    
-   <script>
-    const socket = io();
+    <script>
+        const socket = io();
 
-    // Função para enviar mensagem
-    function sendMessage() {
-      const message = document.getElementById('messageInput').value;
-      const username = 'Usuário';  // Ou qualquer valor que você queira usar como nome de usuário
+        // Função para enviar mensagem
+        document.getElementById('send-btn').addEventListener('click', () => {
+            const message = document.getElementById('chat-input').value;
+            const username = 'Usuário';  // Ou qualquer valor que você queira usar como nome de usuário
 
-      // Envia a mensagem para o servidor
-      socket.emit('chatMessage', { username: username, message: message });
+            // Envia a mensagem para o servidor
+            socket.emit('chatMessage', { username: username, message: message });
 
-      // Limpa o campo de input
-      document.getElementById('messageInput').value = '';
-    }
+            // Limpa o campo de input
+            document.getElementById('chat-input').value = '';
+        });
 
-    // Recebe a mensagem do servidor e exibe na tela
-    socket.on('message', (msg) => {
-      const chatContainer = document.getElementById('chatContainer');
-      const messageDiv = document.createElement('div');
-      messageDiv.classList.add('message');
-      messageDiv.textContent = `${msg.username}: ${msg.message}`;
-      chatContainer.appendChild(messageDiv);
+        // Recebe as mensagens do servidor (todas as mensagens ao iniciar a conexão)
+        socket.on('allMessages', (messages) => {
+            const messagesList = document.getElementById('messages');
+            messagesList.innerHTML = '';  // Limpa as mensagens anteriores
 
-      // Rola para o final da tela
-      chatContainer.scrollTop = chatContainer.scrollHeight;
-    });
-  </script>
-    
+            // Exibe todas as mensagens no chat
+            messages.forEach(msg => {
+                const li = document.createElement('li');
+                li.textContent = `${msg.username}: ${msg.message}`;
+                messagesList.appendChild(li);
+            });
+
+            // Rola para o final da lista de mensagens
+            messagesList.scrollTop = messagesList.scrollHeight;
+        });
+
+        // Recebe uma nova mensagem do servidor e exibe na tela
+        socket.on('message', (msg) => {
+            const messagesList = document.getElementById('messages');
+            const li = document.createElement('li');
+            li.textContent = `${msg.username}: ${msg.message}`;
+            messagesList.appendChild(li);
+
+            // Rola para o final da lista de mensagens
+            messagesList.scrollTop = messagesList.scrollHeight;
+        });
+
+        // Função de interação com o botão de microfone
+        document.getElementById('microphone-btn').addEventListener('click', () => {
+            alert('Funcionalidade de microfone ainda não implementada.');
+        });
+    </script>
 </body>
 </html>

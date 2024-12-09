@@ -34,6 +34,13 @@ app.use(express.static('public'));
 io.on('connection', (socket) => {
   console.log('Usuário conectado: ' + socket.id);
 
+  // Buscar todas as mensagens salvas no banco de dados e enviá-las para o cliente
+  Message.find().then(messages => {
+    socket.emit('allMessages', messages);  // Enviar todas as mensagens para o cliente
+  }).catch(err => {
+    console.log('Erro ao recuperar mensagens:', err);
+  });
+
   // Evento de receber mensagem do cliente
   socket.on('chatMessage', (msg) => {
     // Criando uma nova mensagem e salvando no banco
