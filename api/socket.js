@@ -13,11 +13,15 @@ const connectionString = 'mongodb+srv://Pionne:eraldo@cluster0.rw9vw.mongodb.net
 mongoose.connect(connectionString, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  serverSelectionTimeoutMS: 5000,  // Ajuste o tempo limite, se necessário
+  serverSelectionTimeoutMS: 10000,  // Ajuste o tempo limite, se necessário
 }).then(() => {
   console.log('Conectado ao MongoDB com sucesso!');
 }).catch(err => {
   console.log('Erro ao conectar ao MongoDB:', err);
+});
+
+mongoose.connection.on('error', (err) => {
+    console.error('Erro na conexão com o MongoDB:', err);
 });
 
 // Definição do schema para mensagens
