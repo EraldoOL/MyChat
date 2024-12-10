@@ -7,6 +7,15 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  
+  <!-- Tela de Login -->
+    <div id="login-container">
+        <h1>Bem-vindo ao Bate-Papo do PAIONNE</h1>
+        <input type="text" id="username" placeholder="Digite seu nome..." autocomplete="off">
+        <button id="login-btn">Entrar</button>
+    </div>
+  
+  
     <div id="chat-container">
         <ul id="messages"></ul>
         <input type="text" id="chat-input" placeholder="Digite sua mensagem..." autocomplete="off">
@@ -98,6 +107,37 @@
                     alert("Erro ao acessar o microfone!");
                 });*/
         });
+        
+        let username; // Variável global para armazenar o nome do usuário
+
+// Lógica para o botão de login
+document.getElementById('login-btn').addEventListener('click', () => {
+    username = document.getElementById('username').value.trim();
+    
+    if (username) {
+        // Esconde a tela de login e mostra o chat
+        document.getElementById('login-container').style.display = 'none';
+        document.getElementById('chat-container').style.display = 'block';
+
+        // Envia o nome do usuário para o servidor (opcional)
+        socket.emit('userConnected', username);
+    } else {
+        alert('Por favor, digite um nome de usuário!');
+    }
+});
+
+// Função para enviar mensagem
+document.getElementById('send-btn').addEventListener('click', () => {
+    const message = document.getElementById('chat-input').value;
+
+    if (message.trim()) {
+        // Envia a mensagem para o servidor com o nome do usuário
+        socket.emit('chatMessage', { username: username, message: message });
+
+        // Limpa o campo de input
+        document.getElementById('chat-input').value = '';
+    }
+});
     </script>
 </body>
 </html>

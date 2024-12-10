@@ -3,6 +3,20 @@ const socketIo = require('socket.io');
 const mongoose = require('mongoose');
 const { Server } = require('http');
 
+
+
+io.on('connection', (socket) => {
+    console.log('Usuário conectado:', socket.id);
+
+    // Evento quando o usuário envia o nome ao conectar
+    socket.on('userConnected', (username) => {
+        console.log(`${username} entrou no chat.`);
+    });
+
+    // Restante do código do servidor...
+});
+
+
 // Conexão com o MongoDB
 const connectionString = 'mongodb+srv://Pionne:eraldo@cluster0.rw9vw.mongodb.net/Messenger?retryWrites=true&w=majority&appName=Cluster0';
 mongoose.connect(connectionString, {
@@ -83,6 +97,17 @@ socket.on('typing', (username) => {
 socket.on('stopTyping', () => {
   socket.broadcast.emit('userStopTyping');
 });
+
+
+
+
+
+
+
+
+
+
+
 
 
 // Iniciando o servidor
