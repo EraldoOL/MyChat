@@ -3,25 +3,17 @@ const socketIo = require('socket.io');
 const mongoose = require('mongoose');
 const { Server } = require('http');
 
-
-
-io.on('connection', (socket) => {
-    console.log('Usuário conectado:', socket.id);
-
-    // Evento quando o usuário envia o nome ao conectar
-    socket.on('userConnected', (username) => {
-        console.log(`${username} entrou no chat.`);
-    });
-
-    // Restante do código do servidor...
-});
-
+// Inicializando Express
+const app = express();
+const server = new Server(app);
+const io = socketIo(server);
 
 // Conexão com o MongoDB
 const connectionString = 'mongodb+srv://Pionne:eraldo@cluster0.rw9vw.mongodb.net/Messenger?retryWrites=true&w=majority&appName=Cluster0';
 mongoose.connect(connectionString, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  serverSelectionTimeoutMS: 5000,  // Ajuste o tempo limite, se necessário
 }).then(() => {
   console.log('Conectado ao MongoDB com sucesso!');
 }).catch(err => {
@@ -36,18 +28,29 @@ const messageSchema = new mongoose.Schema({
 });
 const Message = mongoose.model('Message', messageSchema);
 
-// Inicializando Express e Socket.IO
-const app = express();
-const server = new Server(app);
-const io = socketIo(server);
-
 // Rota para servir arquivos estáticos (se necessário)
 app.use(express.static('public'));
 
 // Conexão do socket.io
 io.on('connection', (socket) => {
   console.log('Usuário conectado: ' + socket.id);
-
+ 
+ 
+ 
+ 
+ 
+  
+      // Evento quando o usuário envia o nome ao conectar
+    socket.on('userConnected', (username) => {
+        console.log(`${username} entrou no chat.`);
+        // Emitir uma mensagem para todos os clientes informando que o usuário entrou
+        io.emit('message', { username: 'System', message: `${username} entrou no chat.` });
+    });
+    
+    
+    
+  
+  
   // Buscar todas as mensagens salvas no banco de dados e enviá-las para o cliente
   Message.find().then(messages => {
     socket.emit('allMessages', messages);  // Enviar todas as mensagens para o cliente
@@ -66,21 +69,28 @@ io.on('connection', (socket) => {
     newMessage.save()
       .then(() => {
         console.log('Mensagem salva com sucesso!');
+        io.emit('message', msg);  // Emitir a mensagem para todos os clientes conectados
       })
       .catch((err) => {
         console.log('Erro ao salvar mensagem:', err);
       });
-
-    // Emitir a mensagem para todos os clientes conectados
-    io.emit('message', msg);
   });
 
   // Evento de áudio
   socket.on('audio-stream', (audioBlob) => {
     console.log('Recebendo áudio...');
-
     // Transmitir o áudio para todos os outros clientes conectados
     socket.broadcast.emit('audio-stream', audioBlob);
+  });
+
+  // Notifica quando alguém começa a digitar
+  socket.on('typing', (username) => {
+    socket.broadcast.emit('userTyping', username);
+  });
+
+  // Notifica quando a digitação para
+  socket.on('stopTyping', () => {
+    socket.broadcast.emit('userStopTyping');
   });
 
   socket.on('disconnect', () => {
@@ -88,31 +98,6 @@ io.on('connection', (socket) => {
   });
 });
 
-// Notifica quando alguém começa a digitar
-socket.on('typing', (username) => {
-  socket.broadcast.emit('userTyping', username);
-});
-
-// Notifica quando a digitação para
-socket.on('stopTyping', () => {
-  socket.broadcast.emit('userStopTyping');
-});
-
-
-
-
-
-
-io.on('connection', (socket) => {
-    console.log('Usuário conectado:', socket.id);
-
-    // Evento quando o usuário envia o nome ao conectar
-    socket.on('userConnected', (username) => {
-        console.log(`${username} entrou no chat.`);
-    });
-
-    // Restante do código do servidor...
-});
 
 
 
