@@ -12,7 +12,6 @@ const io = socketIo(server);
 const connectionString = 'mongodb+srv://Pionne:eraldo@cluster0.rw9vw.mongodb.net/Messenger?retryWrites=true&w=majority&appName=Cluster0';
 mongoose.connect(connectionString, {
   ssl: true,
-  sslValidate: false,
   useNewUrlParser: true,
   useUnifiedTopology: true,
   serverSelectionTimeoutMS: 50000,  // Ajuste o tempo limite, se necessário
