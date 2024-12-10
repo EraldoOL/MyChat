@@ -74,6 +74,17 @@ io.on('connection', (socket) => {
   });
 });
 
+// Notifica quando alguém começa a digitar
+socket.on('typing', (username) => {
+  socket.broadcast.emit('userTyping', username);
+});
+
+// Notifica quando a digitação para
+socket.on('stopTyping', () => {
+  socket.broadcast.emit('userStopTyping');
+});
+
+
 // Iniciando o servidor
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {

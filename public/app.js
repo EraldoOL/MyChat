@@ -61,3 +61,29 @@ document.getElementById('microphone-btn').addEventListener('click', () => {
       });
   }
 });
+
+
+const chatInput = document.getElementById('chat-input');
+const typingIndicator = document.getElementById('typing-indicator');
+
+let typingTimeout;
+
+// Notifica o servidor quando começa a digitar
+chatInput.addEventListener('input', () => {
+  socket.emit('typing', 'Usuário');
+  
+  clearTimeout(typingTimeout);
+  typingTimeout = setTimeout(() => {
+    socket.emit('stopTyping');
+  }, 2000); // Envia "parar de digitar" após 2 segundos sem digitar
+});
+
+// Exibe o indicador quando outro usuário está digitando
+socket.on('userTyping', (username) => {
+  typingIndicator.style.display = 'flex';
+});
+
+// Oculta o indicador quando outro usuário para de digitar
+socket.on('userStopTyping', () => {
+  typingIndicator.style.display = 'none';
+});
