@@ -13,7 +13,7 @@ const connectionString = 'mongodb+srv://Pionne:eraldo@cluster0.rw9vw.mongodb.net
 mongoose.connect(connectionString, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  serverSelectionTimeoutMS: 10000,  // Ajuste o tempo limite, se necessário
+  serverSelectionTimeoutMS: 50000,  // Ajuste o tempo limite, se necessário
 }).then(() => {
   console.log('Conectado ao MongoDB com sucesso!');
 }).catch(err => {
