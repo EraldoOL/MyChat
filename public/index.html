@@ -35,12 +35,27 @@
     <script src="/socket.io/socket.io.js"></script>
     <script>
         const socket = io();
+        
+        
+        let username; // Para salvar o nome do usuário
+
+document.getElementById('login-btn').addEventListener('click', () => {
+    username = document.getElementById('username-input').value.trim();
+
+    if (username) {
+        document.getElementById('login-container').style.display = 'none'; // Esconde o login
+        document.getElementById('chat-container').style.display = 'block'; // Mostra o chat
+    } else {
+        alert('Por favor, digite um nome!');
+    }
+});
+        
+        
 
         // Função para enviar mensagem
         document.getElementById('send-btn').addEventListener('click', () => {
             const message = document.getElementById('chat-input').value;
-            const username = 'Usuário';  // Ou qualquer valor que você queira usar como nome de usuário
-
+            
             // Envia a mensagem para o servidor
             socket.emit('chatMessage', { username: username, message: message });
 
@@ -111,18 +126,7 @@
         });
         
         
-        let username; // Para salvar o nome do usuário
-
-document.getElementById('login-btn').addEventListener('click', () => {
-    username = document.getElementById('username-input').value.trim();
-
-    if (username) {
-        document.getElementById('login-container').style.display = 'none'; // Esconde o login
-        document.getElementById('chat-container').style.display = 'block'; // Mostra o chat
-    } else {
-        alert('Por favor, digite um nome!');
-    }
-});
+ 
 
 // Lógica para enviar mensagens no chat
 document.getElementById('send-btn').addEventListener('click', () => {
