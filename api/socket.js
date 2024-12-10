@@ -103,7 +103,16 @@ socket.on('stopTyping', () => {
 
 
 
+io.on('connection', (socket) => {
+    console.log('Usuário conectado:', socket.id);
 
+    // Evento quando o usuário envia o nome ao conectar
+    socket.on('userConnected', (username) => {
+        console.log(`${username} entrou no chat.`);
+    });
+
+    // Restante do código do servidor...
+});
 
 
 

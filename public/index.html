@@ -7,15 +7,6 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  
-  <!-- Tela de Login -->
-    <div id="login-container">
-        <h1>Bem-vindo ao Bate-Papo do PAIONNE</h1>
-        <input type="text" id="username" placeholder="Digite seu nome..." autocomplete="off">
-        <button id="login-btn">Entrar</button>
-    </div>
-  
-  
     <div id="chat-container">
         <ul id="messages"></ul>
         <input type="text" id="chat-input" placeholder="Digite sua mensagem..." autocomplete="off">
@@ -74,7 +65,7 @@
         });
 
         // Função de interação com o botão de microfone
-      /*  let mediaRecorder;
+        let mediaRecorder;
         let audioChunks = [];
         
         document.getElementById('microphone-btn').addEventListener('click', () => {
@@ -102,42 +93,37 @@
                         mediaRecorder.stop();
                     }, 5000); // Ajuste o tempo conforme necessário
                 })
-                .catch(error => {
+              /*  .catch(error => {
                     console.error("Erro ao acessar o microfone:", error);
                     alert("Erro ao acessar o microfone!");
                 });*/
         });
         
-        let username; // Variável global para armazenar o nome do usuário
+        
+        let username; // Para salvar o nome do usuário
 
-// Lógica para o botão de login
 document.getElementById('login-btn').addEventListener('click', () => {
-    username = document.getElementById('username').value.trim();
-    
-    if (username) {
-        // Esconde a tela de login e mostra o chat
-        document.getElementById('login-container').style.display = 'none';
-        document.getElementById('chat-container').style.display = 'block';
+    username = document.getElementById('username-input').value.trim();
 
-        // Envia o nome do usuário para o servidor (opcional)
-        socket.emit('userConnected', username);
+    if (username) {
+        document.getElementById('login-container').style.display = 'none'; // Esconde o login
+        document.getElementById('chat-container').style.display = 'block'; // Mostra o chat
     } else {
-        alert('Por favor, digite um nome de usuário!');
+        alert('Por favor, digite um nome!');
     }
 });
 
-// Função para enviar mensagem
+// Lógica para enviar mensagens no chat
 document.getElementById('send-btn').addEventListener('click', () => {
     const message = document.getElementById('chat-input').value;
 
-    if (message.trim()) {
-        // Envia a mensagem para o servidor com o nome do usuário
+    if (message && username) {
         socket.emit('chatMessage', { username: username, message: message });
-
-        // Limpa o campo de input
-        document.getElementById('chat-input').value = '';
+        document.getElementById('chat-input').value = ''; // Limpa o campo
     }
 });
+        
+        
     </script>
 </body>
 </html>
