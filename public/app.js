@@ -1,5 +1,3 @@
-import {} from '../api/socket.js';
-
 // Criação da conexão com o servidor Socket.IO
 const socket = io(); // Inicializa a conexão
 
