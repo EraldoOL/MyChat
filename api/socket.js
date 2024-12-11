@@ -16,9 +16,18 @@ io.on('connection', (socket) => {
     socket.broadcast.emit('audio-stream', audioBlob);
   });
 
-  socket.on('chatMessage', (msg) => {
+  /*socket.on('chatMessage', (msg) => {
     io.emit('message', msg);
-  });
+  });*/
+  
+  socket.on('chatMessage', (msg) => {
+  if (typeof msg === 'object') {
+    // Se for um objeto, converta para string (ou manipule conforme necessário)
+    io.emit('message', JSON.stringify(msg));
+  } else {
+    io.emit('message', msg); // Envia a mensagem como texto
+  }
+});
 
   socket.on('disconnect', () => {
     console.log('Usuário desconectado: ' + socket.id);
