@@ -58,20 +58,7 @@ document.getElementById('send-btn').addEventListener('click', () => {
             document.getElementById('chat-input').value = '';
         });
         
-        socket.on('allMessages', (messages) => {
-            const messagesList = document.getElementById('messages');
-            messagesList.innerHTML = '';  // Limpa as mensagens anteriores
-
-            // Exibe todas as mensagens no chat
-            messages.forEach(msg => {
-                const li = document.createElement('li');
-                li.textContent = `${msg.username}: ${msg.message}`;
-                messagesList.appendChild(li);
-            });
-
-            // Rola para o final da lista de mensagens
-            messagesList.scrollTop = messagesList.scrollHeight;
-        });
+        
 
       
       
