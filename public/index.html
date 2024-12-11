@@ -7,15 +7,52 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="chat-container">
+    <!--<div id="chat-container">
         <ul id="messages"></ul>
         <input type="text" id="chat-input" placeholder="Digite sua mensagem..." autocomplete="off">
         <button id="send-btn">Enviar</button>
         <button id="microphone-btn">🎤</button>
-    </div>
+    </div>-->
+    
+    <div id="login-container">
+    <input type="text" id="username-input" placeholder="Digite seu nome">
+    <button id="login-btn">Entrar</button>
+</div>
+<div id="chat-container" style="display: none;">
+    <ul id="messages"></ul>
+    <input type="text" id="chat-input" placeholder="Digite sua mensagem..." autocomplete="off">
+    <button id="send-btn">Enviar</button>
+    <button id="microphone-btn">🎤</button>
+</div>
+    
+    
+    
 
     <!-- Certifique-se de que este script esteja presente -->
     <script src="/socket.io/socket.io.js"></script>
     <script src="app.js"></script>
+    
+    
+    <script>
+      
+      let username; // Para salvar o nome do usuário
+
+document.getElementById('login-btn').addEventListener('click', () => {
+    username = document.getElementById('username-input').value.trim();
+
+    if (username) {
+        document.getElementById('login-container').style.display = 'none'; // Esconde o login
+        document.getElementById('chat-container').style.display = 'block'; // Mostra o chat
+    } else {
+        alert('Por favor, digite um nome!');
+    }
+});
+      
+      
+      
+      
+      
+    </script>
+    
 </body>
 </html>
