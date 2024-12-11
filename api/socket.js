@@ -15,6 +15,7 @@ mongoose.connect(connectionString, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   serverSelectionTimeoutMS: 50000,  // Ajuste o tempo limite, se necessário
+  bufferCommands: false,
 }).then(() => {
   console.log('Conectado ao MongoDB com sucesso!');
 }).catch(err => {
