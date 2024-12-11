@@ -47,6 +47,16 @@ document.getElementById('login-btn').addEventListener('click', () => {
         alert('Por favor, digite um nome!');
     }
 });
+
+document.getElementById('send-btn').addEventListener('click', () => {
+            const message = document.getElementById('chat-input').value;
+            
+            // Envia a mensagem para o servidor
+            socket.emit('chatMessage', { username: username, message: message });
+
+            // Limpa o campo de input
+            document.getElementById('chat-input').value = '';
+        });
       
       
       
