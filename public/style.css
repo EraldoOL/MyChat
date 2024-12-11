@@ -22,11 +22,11 @@ body {
 
 ul#messages {
     list-style-type: none;
-    padding: 0;
+    padding: 0px;
     height: 85%;
     overflow-y: auto;
     margin-bottom: 20px;
-    background: green;
+    background: white;
     border-radius: 8px;
     
 }
