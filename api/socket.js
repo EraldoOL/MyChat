@@ -9,7 +9,7 @@ const server = new Server(app);
 const io = socketIo(server);
 
 // Conexão com o MongoDB
-const connectionString = 'mongodb+srv://Pionne:eraldo@cluster0.rw9vw.mongodb.net/Messenger?retryWrites=true&w=majority&appName=Cluster0';
+const connectionString = 'mongodb+srv://Pionne:eraldo@cluster0.rw9vw.mongodb.net/Messenger?retryWrites=true&w=majority';
 mongoose.connect(connectionString, {
   ssl: true,
   useNewUrlParser: true,
