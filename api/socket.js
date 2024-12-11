@@ -21,11 +21,12 @@ io.on('connection', (socket) => {
   });*/
   
   socket.on('chatMessage', (msg) => {
-  if (typeof msg === 'object') {
-    // Se for um objeto, converta para string (ou manipule conforme necessário)
-    io.emit('message', JSON.stringify(msg));
+  if (typeof msg === 'object' && msg.username && msg.message) {
+    // Formata a mensagem no formato desejado
+    const formattedMessage = `${msg.username.toUpperCase()}: ${msg.message}`;
+    io.emit('message', formattedMessage);
   } else {
-    io.emit('message', msg); // Envia a mensagem como texto
+    console.error('Mensagem inválida recebida:', msg);
   }
 });
 
