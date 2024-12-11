@@ -3,16 +3,7 @@ import {} from '../api/socket.js';
 // Criação da conexão com o servidor Socket.IO
 const socket = io(); // Inicializa a conexão
 
-function sendMessage() {
-  const message = document.getElementById('chat-input').value;
-  const username = 'Usuário';  // Ou qualquer valor que você queira usar como nome de usuário
 
-  // Envia a mensagem para o servidor
-  socket.emit('chatMessage', { username: username, message: message });
-
-  // Limpa o campo de input
-  document.getElementById('chat-input').value = '';
-}
 
 // Função para exibir mensagens no chat
 function addMessage(message) {
