@@ -6,23 +6,28 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-color: red; 
+    background-color: #36393F; 
 }
 
 #chat-container {
-    width: 400px;
+    width: 85%;
+    height: 85%;
     padding: 20px;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    
 }
 
 ul#messages {
     list-style-type: none;
     padding: 0;
-    height: 300px;
+    height: 85%;
     overflow-y: auto;
     margin-bottom: 20px;
+    background: green;
+    border-radius: 8px;
+    
 }
 
 li {
@@ -30,21 +35,56 @@ li {
 }
 
 input[type="text"] {
-    width: 80%;
+    width: 60%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
     margin-right: 10px;
+    
 }
 
 button {
     padding: 10px 20px;
     border: none;
-    background-color: #28a745;
+    background-color: lightslategray;
     color: white;
-    border-radius: 4px;
     cursor: pointer;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+button img{
+  width: 30px;
+  height: 30px;
+  
+}
+
+
+.enviar{
+  padding-left: 25px;
+}
+
+
+
+.botoes {
+  background: #36393F;
+  width: 90.5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed; /* Fixa a posição */
+  bottom: 35.3px; /* Alinha no rodapé */
+  left: 50%; /* Centraliza horizontalmente */
+  transform: translateX(-50%); /* Corrige o deslocamento horizontal */
+  padding: 10px;
+  border-radius: 8px;
+}
+
 
 button:hover {
     background-color: #218838;

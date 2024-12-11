@@ -7,18 +7,22 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Tela de login -->
+    <!-- Tela de login 
     <div id="login-container">
         <input type="text" id="username-input" placeholder="Digite seu nome">
         <button id="login-btn">Entrar</button>
-    </div>
+    </div> -->
 
     <!-- Tela do chat -->
-    <div id="chat-container" style="display: none;">
+    <div id="chat-container" style="display: ;">
+          <div class="botoes">
         <ul id="messages"></ul>
         <input type="text" id="chat-input" placeholder="Digite sua mensagem..." autocomplete="off">
-        <button id="send-btn">Enviar</button>
-        <button id="microphone-btn">🎤</button>
+
+                  <button class="enviar" id="send-btn"><img src="../imgs/enviar-mensagem.png" alt=""></button>
+        <button id="microphone-btn"><img src="../imgs/microfone.png" alt=""></button>
+        </div>
+
     </div>
 
     <!-- Scripts -->
