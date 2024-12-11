@@ -79,7 +79,7 @@ button img{
   justify-content: center;
   align-items: center;
   position: fixed; /* Fixa a posição */
-  bottom: 20px; /* Alinha no rodapé */
+  bottom: 5px; /* Alinha no rodapé */
   left: 50%; /* Centraliza horizontalmente */
   transform: translateX(-50%); /* Corrige o deslocamento horizontal */
   padding: 10px;
