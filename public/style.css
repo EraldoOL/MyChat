@@ -6,7 +6,8 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-color: #36393F; 
+    background-color: #36393F;
+    overflow-y: hidden;
 }
 
 #chat-container {
