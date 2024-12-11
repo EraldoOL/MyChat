@@ -7,6 +7,7 @@ const server = new Server(app); // Criação do servidor HTTP
 const io = socketIo(server); // Inicializando o Socket.IO com o servidor HTTP
 
 app.use(express.static('public')); // Servindo os arquivos estáticos
+app.use('/icons', express.static('Icons'));
 
 // Configuração do socket.io
 io.on('connection', (socket) => {
