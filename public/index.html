@@ -52,7 +52,7 @@ document.getElementById('send-btn').addEventListener('click', () => {
             const message = document.getElementById('chat-input').value;
             
             // Envia a mensagem para o servidor
-            socket.emit('chatMessage', { username: username, message: message });
+            socket.emit('chatMessage', { username: username, message: 'oi' });
 
             // Limpa o campo de input
             document.getElementById('chat-input').value = '';
