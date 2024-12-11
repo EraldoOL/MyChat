@@ -55,8 +55,24 @@ document.getElementById('send-btn').addEventListener('click', () => {
             socket.emit('chatMessage', { username: username, message: message });
 
             // Limpa o campo de input
-            document.getElementById('chat-input').value = 'um';
+            document.getElementById('chat-input').value = '';
         });
+        
+        socket.on('allMessages', (messages) => {
+            const messagesList = document.getElementById('messages');
+            messagesList.innerHTML = '';  // Limpa as mensagens anteriores
+
+            // Exibe todas as mensagens no chat
+            messages.forEach(msg => {
+                const li = document.createElement('li');
+                li.textContent = `${msg.username}: ${msg.message}`;
+                messagesList.appendChild(li);
+            });
+
+            // Rola para o final da lista de mensagens
+            messagesList.scrollTop = messagesList.scrollHeight;
+        });
+
       
       
       
