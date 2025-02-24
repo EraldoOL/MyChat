@@ -3,7 +3,7 @@ const socket = io(); // Inicializa a conexão
 
 
 
-// Função para exibir mensagens no chat
+
 function addMessage(message) {
     const li = document.createElement('li');
     li.textContent = message;
