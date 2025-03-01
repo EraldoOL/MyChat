@@ -7,7 +7,7 @@ function addMessage(message) {
     document.getElementById('messages').appendChild(li);
 }
 
-// Recebe mensagem do s
+// Recebe mensagem do 
 socket.on('message', (msg) => {
     addMessage(msg);
 });
