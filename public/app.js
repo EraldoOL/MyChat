@@ -1,5 +1,5 @@
 // Criação da conexão com o servidor Socket.IO
-const socket = io(); // Inicializa a con
+const socket = io(); // Inicializa a co
 
 function addMessage(message) {
     const li = document.createElement('li');
