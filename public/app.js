@@ -7,7 +7,7 @@ function addMessage(message) {
     document.getElementById('messages').appendChild(li);
 }
 
-// Re
+// R
 socket.on('message', (msg) => {
     addMessage(msg);
 });
