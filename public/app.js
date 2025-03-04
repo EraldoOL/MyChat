@@ -1,4 +1,4 @@
-// Criação da conexão com o ser
+// Criação da conexão com o se
 const socket = io();
 
 function addMessage(message) {
