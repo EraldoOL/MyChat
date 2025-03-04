@@ -1,4 +1,4 @@
-// Criação da conexão com o servi
+// Criação da conexão com o serv
 const socket = io();
 
 function addMessage(message) {
