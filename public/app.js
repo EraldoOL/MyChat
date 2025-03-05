@@ -1,4 +1,4 @@
-// Cria
+// Cri
 const socket = io();
 
 function addMessage(message) {
