@@ -1,4 +1,4 @@
-// Criação da conex
+// Criação da cone
 const socket = io();
 
 function addMessage(message) {
