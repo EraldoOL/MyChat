@@ -1,4 +1,4 @@
-// Cr
+// C
 const socket = io();
 
 function addMessage(message) {
