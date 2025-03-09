@@ -10,7 +10,7 @@ function addMessage(message) {
 socket.on('message', (msg) => {
     addMessage(msg);
 });
-// No lado do cliente pa
+// No lado do cliente p
 socket.on('audio-stream', (audioBlob) => {
   const audioUrl = URL.createObjectURL(audioBlob);
   const audio = new Audio(audioUrl);
