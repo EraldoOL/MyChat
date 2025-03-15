@@ -1,0 +1,53 @@
+import java.util.Scanner;
+
+class Conta {
+    private double saldo;
+
+    public Conta(double saldoInicial) {
+        this.saldo = saldoInicial;
+    }
+
+    public void depositar(double valor) {
+        saldo += valor;
+        System.out.printf("Saldo Atualizado: %.2f%n", saldo); // Imprimir após o depósito
+    }
+
+    public boolean sacar(double valor) {
+        if (valor > saldo) {
+            System.out.println("Saque invalido: Saldo insuficiente");
+            System.out.printf("Saldo Atual: %.2f%n", saldo); // Imprimir após erro no saque
+            return false;
+        }
+        saldo -= valor;
+        System.out.printf("Saldo Atualizado: %.2f%n", saldo); // Imprimir após o saque
+        return true;
+    }
+}
+
+public class Banco {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Entrada dos dados iniciais
+        String nome = scanner.nextLine(); // Nome do titular (ignorando)
+        scanner.nextInt(); // Número da conta (ignorando)
+        double saldoInicial = scanner.nextDouble(); // Saldo inicial
+
+        // Criando conta
+        Conta conta = new Conta(saldoInicial);
+
+        // Processando apenas a primeira operação (depósito ou saque)
+        if (scanner.hasNextDouble()) {
+            double valor1 = scanner.nextDouble(); // Primeiro valor de depósito ou saque
+
+            // Se o valor for positivo, é um depósito; se for negativo, é um saque
+            if (valor1 > 0) {
+                conta.depositar(valor1); // Depósito
+            } else {
+                conta.sacar(-valor1); // Saque
+            }
+        }
+
+        scanner.close();
+    }
+}
