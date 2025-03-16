@@ -36,15 +36,17 @@ public class Banco {
         // Criando conta
         Conta conta = new Conta(saldoInicial);
 
-        // Processando apenas a primeira operação (depósito ou saque)
+        // Processando operações corretamente
         if (scanner.hasNextDouble()) {
             double valor1 = scanner.nextDouble(); // Primeiro valor de depósito ou saque
 
-            // Se o valor for positivo, é um depósito; se for negativo, é um saque
-            if (valor1 > 0) {
+            // Se houver outro valor, então será outro saque ou depósito
+            if (scanner.hasNextDouble()) {
+                double valor2 = scanner.nextDouble(); 
                 conta.depositar(valor1); // Depósito
+                conta.sacar(valor2); // Saque
             } else {
-                conta.sacar(-valor1); // Saque
+                conta.sacar(valor1); // Apenas um saque
             }
         }
 
