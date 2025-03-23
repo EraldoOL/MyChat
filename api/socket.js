@@ -3,7 +3,7 @@ const socketIo = require('socket.io');
 const { Server } = require('http');
 
 const app = express();
-const server = new Server(app); // Criação do s
+const server = new Server(app); // Criação do 
 const io = socketIo(server); // Inicializando o Socket.IO com o servidor HTTP
 
 app.use(express.static('public')); // Servindo os arquivos estáticos
