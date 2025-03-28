@@ -4,7 +4,7 @@ const { Server } = require('http');
 
 const app = express();
 const server = new Server(app); 
-const io = socketIo(server); // Ini
+const io = socketIo(server); // In
 
 app.use(express.static('public')); // Servindo os arquivos estáticos
 app.use('/imgs', express.static('imgs'));
