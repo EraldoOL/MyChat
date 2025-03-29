@@ -6,7 +6,7 @@ const app = express();
 const server = new Server(app); 
 const io = socketIo(server); 
 
-app.use(express.static('public')); // Servindo os arqu
+app.use(express.static('public')); // Servindo os arq
 app.use('/imgs', express.static('imgs'));
 
 // Configuração do socket.io
