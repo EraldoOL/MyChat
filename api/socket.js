@@ -6,7 +6,7 @@ const app = express();
 const server = new Server(app); 
 const io = socketIo(server); 
 
-app.use(express.static('public')); // Servindo os arquivo
+app.use(express.static('public')); // Servindo os arquiv
 app.use('/imgs', express.static('imgs'));
 
 // Configuração do socket.io
