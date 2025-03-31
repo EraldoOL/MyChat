@@ -6,7 +6,7 @@ const app = express();
 const server = new Server(app); 
 const io = socketIo(server); 
 
-app.use(express.static('public')); // 
+app.use(express.static('public')); //
 app.use('/imgs', express.static('imgs'));
 
 // Configuração do socket.io
