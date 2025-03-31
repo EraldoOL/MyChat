@@ -20,7 +20,7 @@ io.on('connection', (socket) => {
   
   socket.on('chatMessage', (msg) => {
   if (typeof msg === 'object' && msg.username && msg.message) {
-    // Formata a mensagem no formato
+    // Formata a mensagem no format
     const formattedMessage = `${msg.username.toUpperCase()}: ${msg.message}`;
     io.emit('message', formattedMessage);
   } else {
