@@ -17,7 +17,7 @@ io.on('connection', (socket) => {
     socket.broadcast.emit('audio-stream', audioBlob);
   });
 
-  
+
   socket.on('chatMessage', (msg) => {
   if (typeof msg === 'object' && msg.username && msg.message) {
     
