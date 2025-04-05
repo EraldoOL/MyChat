@@ -37,7 +37,7 @@ server.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
 });
 
-// Exporta o servidor para que a Vercel/Render possa u
+// Exporta o servidor para que a Vercel/Render possa 
 module.exports = (req, res) => {
   server.emit('request', req, res);
 };
