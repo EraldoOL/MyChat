@@ -37,7 +37,7 @@ server.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
 });
 
-// Exporta o servidor para que a Verce
+// Exporta o servidor para que a Verc
 module.exports = (req, res) => {
   server.emit('request', req, res);
 };
