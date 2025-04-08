@@ -37,7 +37,7 @@ server.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
 });
 
-// Exporta o servid
+// Exporta o servi
 module.exports = (req, res) => {
   server.emit('request', req, res);
 };
