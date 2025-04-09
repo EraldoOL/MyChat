@@ -9,7 +9,7 @@ const io = socketIo(server);
 app.use(express.static('public')); 
 app.use('/imgs', express.static('imgs'));
 
-// Configuração do socket.
+// Configuração do socket
 io.on('connection', (socket) => {
   console.log('Usuário conectado: ' + socket.id);
 
