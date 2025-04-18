@@ -82,7 +82,7 @@ button img{
   position: fixed; /* Fixa a posição */
   bottom: 5px; /* Alinha no rodapé */
   left: 50%; /* Centraliza horizontalmente */
-  transform: translateX(-50%); /* Corrige o */
+  transform: translateX(-50%); /* Corrige o*/
   padding: 10px;
   border-radius: 8px;
 }
