@@ -80,7 +80,7 @@ button img{
   justify-content: center;
   align-items: center;
   position: fixed; /* Fixa a posição */
-  bottom: 5px; /* Alinha no */
+  bottom: 5px; /* Alinha no*/
   left: 50%;
   transform: translateX(-50%);
   padding: 10px;
