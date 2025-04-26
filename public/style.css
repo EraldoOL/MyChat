@@ -79,7 +79,7 @@ button img{
   display: flex;
   justify-content: center;
   align-items: center;
-  position: fixed; /* Fi*/
+  position: fixed; /* F*/
   bottom: 5px;
   left: 50%;
   transform: translateX(-50%);
