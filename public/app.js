@@ -17,7 +17,7 @@ socket.on('audio-stream', (audioBlob) => {
   audio.play();
 });
 
-// Enviar mensagem quando o botão for cli
+// Enviar mensagem quando o botão for cl
 document.getElementById('send-btn').addEventListener('click', () => {
     const message = document.getElementById('chat-input').value;
     if (message.trim()) {
