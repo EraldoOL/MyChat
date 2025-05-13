@@ -17,7 +17,7 @@ socket.on('audio-stream', (audioBlob) => {
   audio.play();
 });
 
-// Enviar mensa
+// Enviar mens
 document.getElementById('send-btn').addEventListener('click', () => {
     const message = document.getElementById('chat-input').value;
     if (message.trim()) {
