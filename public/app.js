@@ -21,7 +21,7 @@ socket.on('audio-stream', (audioBlob) => {
 document.getElementById('send-btn').addEventListener('click', () => {
     const message = document.getElementById('chat-input').value;
     if (message.trim()) {
-        socket.emit('chatMessage', message);  // Envia a mensagem para o servid
+        socket.emit('chatMessage', message);  // Envia a mensagem para o servi
         document.getElementById('chat-input').value = '';  // Limpa o campo de input
     }
 });
