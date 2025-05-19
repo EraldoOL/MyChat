@@ -22,7 +22,7 @@ document.getElementById('send-btn').addEventListener('click', () => {
     const message = document.getElementById('chat-input').value;
     if (message.trim()) {
         socket.emit('chatMessage', message);
-        document.getElementById('chat-input').value = '';  // Limpa o campo 
+        document.getElementById('chat-input').value = '';  // Limpa o campo
     }
 });
 
