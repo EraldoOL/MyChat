@@ -26,7 +26,7 @@ document.getElementById('send-btn').addEventListener('click', () => {
     }
 });
 
-// Enviar mensagem quando pr
+// Enviar mensagem quando p
 document.getElementById('chat-input').addEventListener('keypress', (event) => {
     if (event.key === 'Enter' && document.getElementById('chat-input').value.trim()) {
         socket.emit('chatMessage', document.getElementById('chat-input').value);  // Envia a mensagem para o servid
