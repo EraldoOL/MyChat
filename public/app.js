@@ -29,7 +29,7 @@ document.getElementById('send-btn').addEventListener('click', () => {
 //
 document.getElementById('chat-input').addEventListener('keypress', (event) => {
     if (event.key === 'Enter' && document.getElementById('chat-input').value.trim()) {
-        socket.emit('chatMessage', document.getElementById('chat-input').value);  // Envia a mensagem para o serv
+        socket.emit('chatMessage', document.getElementById('chat-input').value);  // Envia a mensagem para o ser
         document.getElementById('chat-input').value = '';  // Limpa o campo de input
     }
 });
