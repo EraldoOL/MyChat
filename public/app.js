@@ -34,7 +34,7 @@ document.getElementById('chat-input').addEventListener('keypress', (event) => {
     }
 });
 
-// Função para iniciar o rec
+// Função para iniciar o re
 const micButton = document.getElementById('microphone-btn');
 
 if ('webkitSpeechRecognition' in window) {
