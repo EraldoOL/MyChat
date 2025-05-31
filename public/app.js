@@ -34,7 +34,7 @@ document.getElementById('chat-input').addEventListener('keypress', (event) => {
     }
 });
 
-// Função para iniciar o reconhecim
+// Função para iniciar o reconheci
 const micButton = document.getElementById('microphone-btn');
 
 if ('webkitSpeechRecognition' in window) {
