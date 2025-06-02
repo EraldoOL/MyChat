@@ -54,7 +54,7 @@ if ('webkitSpeechRecognition' in window) {
         }
         document.getElementById('chat-input').value = transcript;
 
-        // Enviar o texto transcrito como uma mensage
+        // Enviar o texto transcrito como uma mensag
         socket.emit('chatMessage', transcript);
     };
 
