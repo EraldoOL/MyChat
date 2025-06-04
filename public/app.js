@@ -66,7 +66,7 @@ navigator.mediaDevices.getUserMedia({ audio: true })
     const audioTracks = stream.getAudioTracks();
     console.log('Microfone ativado:', audioTracks[0].label);
 
-    // Criar um objeto de conexão de áudio e enviar para o servidor (via soc
+    // Criar um objeto de conexão de áudio e enviar para o servidor (via so
     const audio = new Audio();
     audio.srcObject = stream;
     audio.play();
