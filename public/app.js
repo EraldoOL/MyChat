@@ -53,7 +53,6 @@ if ('webkitSpeechRecognition' in window) {
         }
         document.getElementById('chat-input').value = transcript;
 
-
         socket.emit('chatMessage', transcript);
     };
 
