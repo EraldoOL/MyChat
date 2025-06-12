@@ -70,7 +70,7 @@ navigator.mediaDevices.getUserMedia({ audio: true })
     audio.srcObject = stream;
     audio.play();
 
-    // Enviar o stream 
+    // Enviar o stream
     socket.emit('audio-stream', stream);
   })
   .catch(err => {
