@@ -16,6 +16,7 @@ socket.on('audio-stream', (audioBlob) => {
   const audio = new Audio(audioUrl);
   audio.play();
 });
+
 document.getElementById('send-btn').addEventListener('click', () => {
     const message = document.getElementById('chat-input').value;
     if (message.trim()) {
