@@ -22,7 +22,6 @@ document.getElementById('send-btn').addEventListener('click', () => {
     if (message.trim()) {
         socket.emit('chatMessage', message);
         document.getElementById('chat-input').value = '';
-
     }
 });
 
