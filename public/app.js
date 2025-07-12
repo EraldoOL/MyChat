@@ -24,6 +24,7 @@ document.getElementById('send-btn').addEventListener('click', () => {
         document.getElementById('chat-input').value = '';
     
     }
+    
 });
 
 document.getElementById('chat-input').addEventListener('keypress', (event) => {
