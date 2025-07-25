@@ -13,6 +13,7 @@ MyChat é uma aplicação de bate-papo virtual desenvolvida para proporcionar co
 - **Nickname personalizado:** Escolha seu próprio nome de usuário para ser identificado na sala.
 - **Interface amigável:** Visual limpo e intuitivo, desenvolvido com React, HTML e CSS.
 - **Atualização automática:** As mensagens aparecem imediatamente para todos os participantes, sem necessidade de recarregar a página.
+- **Sistema de Voz(Áudio) sendo desenvoldido**
 
 ## Tecnologias Utilizadas
 
@@ -20,10 +21,16 @@ MyChat é uma aplicação de bate-papo virtual desenvolvida para proporcionar co
   - React
   - HTML5
   - CSS3
+  - JS(Javascript)
 
 - **Backend:**  
   - Node.js
   - Socket.io
+  - Express.js
+  - JS(Javascript)
+  
+- **Futuramente**
+  - WebRTC
 
 ## Como Executar Localmente
 
@@ -85,5 +92,3 @@ Este projeto está licenciado sob a MIT License. Veja o arquivo [LICENSE](LICENS
 - Desenvolvido por [EraldoOL](https://github.com/EraldoOL)
 
 ---
-
-Se quiser acrescentar exemplos de uso, prints da interface ou detalhes técnicos específicos, basta me informar!
