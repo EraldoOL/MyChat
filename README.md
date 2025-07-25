@@ -3,7 +3,10 @@
 
 # MyChat
 
-[![Deploy](https://img.shields.io/badge/deploy-online-green)](https://my-chat-orpin-three.vercel.app)
+[![Deploy](https://img.shields.io/badge/deploy-offiline-green)](https://my-chat-orpin-three.vercel.app)
+
+**CASO O SITE NAO ESTEJA PEGANDO É BEM PROVÁVEL QUE O LIMITE DA HOSPEDAGEM DA RENDER TENHA ACABADO**
+
 
 MyChat é uma aplicação de bate-papo virtual desenvolvida para proporcionar comunicação em tempo real entre usuários. Utilizando tecnologias modernas como React, Node.js, Socket.io, HTML e CSS, o projeto permite que qualquer pessoa defina seu próprio nickname e envie mensagens instantâneas para os demais participantes da sala.
 
